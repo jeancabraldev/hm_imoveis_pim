@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1041812356983",
+    "firebase_url": "https://hm-imoveis-pim.firebaseio.com",
+    "project_id": "hm-imoveis-pim",
+    "storage_bucket": "hm-imoveis-pim.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041812356983:android:366c61ac6f1e3e5aa6eb72",
+        "android_client_info": {
+          "package_name": "com.code4line.hm_imoveis_pim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041812356983-7ovmlco2898hbm2g42jttqvp3doc3rsj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWYW_HW68f_Dwn7BdobETRFxYSbtM8woc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1041812356983-7ovmlco2898hbm2g42jttqvp3doc3rsj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
