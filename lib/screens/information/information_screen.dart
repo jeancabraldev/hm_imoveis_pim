@@ -52,19 +52,22 @@ class InformationScreen extends StatelessWidget {
                         ListTileWidget(
                           title: 'Lei Geral de Proteção de Dados',
                           leading: FontAwesomeIcons.gavel,
-                          onTap: () {},
+                          onTap: () =>
+                              Navigator.of(context).pushNamed('/lawDetails'),
                         ),
                         const Divider(),
                         ListTileWidget(
                           title: 'O que é um Bitcoin?',
                           leading: FontAwesomeIcons.bitcoin,
-                          onTap: () {},
+                          onTap: () => Navigator.of(context)
+                              .pushNamed('/bitcoinDetails'),
                         ),
                         const Divider(),
                         ListTileWidget(
                           title: 'Como realizar uma transação?',
                           leading: FontAwesomeIcons.handsHelping,
-                          onTap: () {},
+                          onTap: () => Navigator.of(context)
+                              .pushNamed('/transactionDetails'),
                         ),
                       ],
                     ),

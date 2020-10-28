@@ -104,7 +104,7 @@ class ContactUsScreen extends StatelessWidget {
                             }
                           },
                           text: const Text(
-                            'Enviar Mensagem',
+                            'ENVIAR MENSAGEM',
                             style: TextStyle(
                               letterSpacing: 2,
                             ),

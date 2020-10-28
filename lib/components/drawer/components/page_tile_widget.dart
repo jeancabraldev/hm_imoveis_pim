@@ -36,7 +36,6 @@ class PageTileWidget extends StatelessWidget {
       ),
       onTap: () {
         context.read<PageManager>().setPage(page);
-        debugPrint('TOQUEI $page');
       },
     );
   }

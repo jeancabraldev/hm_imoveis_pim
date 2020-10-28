@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hm_imoveis_pim/models/bitcoin/bitcoin_manager.dart';
 import 'package:hm_imoveis_pim/models/user/user_manager.dart';
 import 'package:hm_imoveis_pim/screens/base/base_screen.dart';
+import 'package:hm_imoveis_pim/screens/bitcoin/bitcoin_details_screen.dart';
+import 'package:hm_imoveis_pim/screens/law/law_details_sreen.dart';
 import 'package:hm_imoveis_pim/screens/login/login_screen.dart';
 import 'package:hm_imoveis_pim/screens/signup/sinup_screen.dart';
+import 'package:hm_imoveis_pim/screens/transaction/transaction_details_screen.dart';
 import 'package:hm_imoveis_pim/utils/colors_app.dart';
 import 'package:provider/provider.dart';
 
@@ -15,9 +19,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => UserManager(),
-      lazy: false,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => UserManager(),
+          lazy: false,
+        ),
+        ChangeNotifierProvider(
+          create: (_) => BitcoinManager(),
+          lazy: false,
+        ),
+      ],
       child: MaterialApp(
         title: 'HM Imóveis',
         debugShowCheckedModeBanner: false,
@@ -39,10 +51,21 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(
                 builder: (_) => LoginScreen(),
               );
-
             case '/signup':
               return MaterialPageRoute(
                 builder: (_) => SignupScreen(),
+              );
+            case '/bitcoinDetails':
+              return MaterialPageRoute(
+                builder: (_) => BitcoinDetailsWidget(),
+              );
+            case '/lawDetails':
+              return MaterialPageRoute(
+                builder: (_) => LawDetailsScreen(),
+              );
+            case '/transactionDetails':
+              return MaterialPageRoute(
+                builder: (_) => TransactionDetailsScreen(),
               );
             case '/base':
             default:

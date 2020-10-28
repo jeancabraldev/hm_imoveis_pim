@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hm_imoveis_pim/models/page/page_manager.dart';
-import 'package:hm_imoveis_pim/screens/about/about_screen.dart';
+import 'package:hm_imoveis_pim/screens/about_us/about_screen.dart';
 import 'package:hm_imoveis_pim/screens/account/account_screen.dart';
 import 'package:hm_imoveis_pim/screens/bitcoin/bitcoin_screen.dart';
 import 'package:hm_imoveis_pim/screens/company/local_company_screen.dart';
@@ -29,7 +29,7 @@ class _BaseScreenState extends State<BaseScreen> {
           PropertiesScreen(),
           LaunchScreen(),
           BitcoinScreen(),
-          AboutScreen(),
+          AboutUsScreen(),
           ContactUsScreen(),
           LocalCompanyScreen(),
           InformationScreen(),
