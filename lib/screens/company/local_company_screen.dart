@@ -15,16 +15,14 @@ class LocalCompanyScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: ListView(
-        children: const [
-          CardWidget(
-            pathImage: 'assets/images/store_local.jpg',
-            address: 'Av. Constabíle Romano, 1115',
-            city: 'Ribeirânia, Ribeirão Preto - SP',
-            hour1: 'Seg-Sex: 8h00 - 18h00',
-            hour2: 'Sab: 8h00 - 15h00',
-          ),
-        ],
+      body: const Center(
+        child: CardWidget(
+          pathImage: 'assets/images/store_local.jpg',
+          address: 'Av. Constabíle Romano, 1115',
+          city: 'Ribeirânia, Ribeirão Preto - SP',
+          hour1: 'Seg-Sex: 8h00 - 18h00',
+          hour2: 'Sab: 8h00 - 15h00',
+        ),
       ),
     );
   }

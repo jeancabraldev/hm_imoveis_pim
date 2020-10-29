@@ -18,7 +18,6 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: ColorsApp.primaryColor(),
       body: Center(
         // ignore: avoid_unnecessary_containers
         child: SingleChildScrollView(
@@ -109,6 +108,8 @@ class LoginScreen extends StatelessWidget {
                                   'ENTRAR',
                                   style: TextStyle(
                                     letterSpacing: 2,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                           onPressed: userManager.loading

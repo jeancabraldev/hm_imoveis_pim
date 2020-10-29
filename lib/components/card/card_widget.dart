@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hm_imoveis_pim/components/buttons/icon/icon_button_widget.dart';
+import 'package:hm_imoveis_pim/models/preferences/preferences_manager.dart';
 import 'package:hm_imoveis_pim/utils/colors_app.dart';
+import 'package:provider/provider.dart';
 
 class CardWidget extends StatelessWidget {
   const CardWidget({
@@ -22,6 +23,7 @@ class CardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final darkTheme = Provider.of<PreferencesManager>(context);
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       shape: RoundedRectangleBorder(
@@ -49,11 +51,12 @@ class CardWidget extends StatelessWidget {
               children: [
                 Text(
                   'HM Imóveis',
-                  style: GoogleFonts.montserrat(
-                    textStyle: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                    ),
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: darkTheme.darkTheme()
+                        ? ColorsApp.secondaryColor()
+                        : ColorsApp.primaryColor(),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -66,14 +69,20 @@ class CardWidget extends StatelessWidget {
                   children: [
                     IconButtonWidget(
                       onTap: () {},
-                      color: ColorsApp.primaryColor(),
+                      color: darkTheme.darkTheme()
+                          ? ColorsApp.secondaryColor()
+                          : ColorsApp.primaryColor(),
                       size: 24,
                       icon: FontAwesomeIcons.mapMarkerAlt,
                     ),
                     const SizedBox(width: 10),
                     IconButtonWidget(
-                      onTap: () {},
-                      color: ColorsApp.primaryColor(),
+                      onTap: () {
+                        //TODO: AÇÃO DOS BOTÕES
+                      },
+                      color: darkTheme.darkTheme()
+                          ? ColorsApp.secondaryColor()
+                          : ColorsApp.primaryColor(),
                       size: 24,
                       icon: FontAwesomeIcons.phoneAlt,
                     ),

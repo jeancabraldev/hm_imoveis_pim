@@ -7,7 +7,7 @@ class TransactionDetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Lei Geral de Proteção de Dados',
+          'Como realizar uma transação',
           style: GoogleFonts.montserrat(
             textStyle: const TextStyle(
               fontSize: 17,

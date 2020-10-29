@@ -45,9 +45,6 @@ class UserManager extends ChangeNotifier {
       final AuthResult result = await auth.createUserWithEmailAndPassword(
           email: user.email, password: user.password);
 
-      //Salvando usuário logado na hora do signUp
-      //this.user = result.user;
-
       //Salvando o id do usuário criado no objeto user
       user.id = result.user.uid;
       this.user = user;
@@ -59,6 +56,7 @@ class UserManager extends ChangeNotifier {
     } on PlatformException catch (e) {
       onFail(getErrorString(e.code));
     }
+    loading = false;
   }
 
   set loading(bool value) {
@@ -75,7 +73,6 @@ class UserManager extends ChangeNotifier {
           await firestore.collection('users').document(currentUser.uid).get();
       //Transformando os dados do usuário em um objeto do tipo user
       user = User.fromDocument(docUser);
-      print(user.name);
       notifyListeners();
     }
   }

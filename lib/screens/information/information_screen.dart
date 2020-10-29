@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hm_imoveis_pim/components/drawer/drawer_widget.dart';
-
-import 'components/list_tile_widget.dart';
+import 'package:hm_imoveis_pim/components/list_tile/list_tile_widget.dart';
 
 class InformationScreen extends StatelessWidget {
   @override
@@ -18,6 +17,7 @@ class InformationScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
+        padding: const EdgeInsets.only(top: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
@@ -34,7 +34,7 @@ class InformationScreen extends StatelessWidget {
               ),
             ),
             Container(
-              height: 400,
+              height: MediaQuery.of(context).size.height * 0.39,
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -69,6 +69,7 @@ class InformationScreen extends StatelessWidget {
                           onTap: () => Navigator.of(context)
                               .pushNamed('/transactionDetails'),
                         ),
+                        const Divider(),
                       ],
                     ),
                   ),

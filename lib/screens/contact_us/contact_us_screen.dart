@@ -22,7 +22,7 @@ class ContactUsScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        //padding: const EdgeInsets.only(top: 30),
+        padding: const EdgeInsets.only(top: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
@@ -107,6 +107,8 @@ class ContactUsScreen extends StatelessWidget {
                             'ENVIAR MENSAGEM',
                             style: TextStyle(
                               letterSpacing: 2,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           color: ColorsApp.secondaryColor(),

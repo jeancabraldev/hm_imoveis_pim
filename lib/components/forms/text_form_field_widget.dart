@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hm_imoveis_pim/models/preferences/preferences_manager.dart';
+import 'package:provider/provider.dart';
 
 class TextFormFieldWidget extends StatelessWidget {
   const TextFormFieldWidget({
@@ -32,8 +34,10 @@ class TextFormFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final darkMode = Provider.of<PreferencesManager>(context);
     return TextFormField(
-      style: TextStyle(color: Colors.grey[700]),
+      style: TextStyle(
+          color: darkMode.darkTheme() ? Colors.white : Colors.grey[700]),
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
         isDense: true,

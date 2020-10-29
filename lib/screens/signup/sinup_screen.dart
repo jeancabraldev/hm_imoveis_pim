@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hm_imoveis_pim/components/buttons/raised/raised_button_widget.dart';
 import 'package:hm_imoveis_pim/components/forms/text_form_field_widget.dart';
 import 'package:hm_imoveis_pim/helpers/validator.dart';
+import 'package:hm_imoveis_pim/models/preferences/preferences_manager.dart';
 import 'package:hm_imoveis_pim/models/user/user.dart';
 import 'package:hm_imoveis_pim/models/user/user_manager.dart';
 import 'package:hm_imoveis_pim/utils/colors_app.dart';
@@ -15,10 +16,10 @@ class SignupScreen extends StatelessWidget {
   final User user = User();
   @override
   Widget build(BuildContext context) {
+    final darkTheme = Provider.of<PreferencesManager>(context);
     String msg = 'Campo obrigatório';
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: ColorsApp.primaryColor(),
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -98,7 +99,7 @@ class SignupScreen extends StatelessWidget {
                             ),
                           ),
                           TextFormFieldWidget(
-                            prefixIcon: FontAwesomeIcons.solidEnvelope,
+                            prefixIcon: FontAwesomeIcons.lock,
                             textInputType: TextInputType.visiblePassword,
                             autocorrect: false,
                             hintText: 'Senha',
@@ -117,7 +118,7 @@ class SignupScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 10, bottom: 10),
                             child: TextFormFieldWidget(
-                              prefixIcon: FontAwesomeIcons.solidEnvelope,
+                              prefixIcon: FontAwesomeIcons.lock,
                               textInputType: TextInputType.visiblePassword,
                               autocorrect: false,
                               hintText: 'Repetir Senha',
@@ -149,6 +150,8 @@ class SignupScreen extends StatelessWidget {
                                     'CRIAR CONTA',
                                     style: TextStyle(
                                       letterSpacing: 2,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                             onPressed: userManager.loading
@@ -176,32 +179,29 @@ class SignupScreen extends StatelessWidget {
                                         );
                                         return;
                                       }
-                                      context.read<UserManager>().signUp(
-                                            user: user,
-                                            onSuccess: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                            onFail: (e) {
-                                              _scaffoldKey.currentState
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                    'Usuário não cadastrado: $e',
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                      textStyle:
-                                                          const TextStyle(
-                                                        letterSpacing: 2,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                    ),
+                                      userManager.signUp(
+                                        user: user,
+                                        onSuccess: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        onFail: (e) {
+                                          _scaffoldKey.currentState
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'Usuário não cadastrado: $e',
+                                                style: GoogleFonts.montserrat(
+                                                  textStyle: const TextStyle(
+                                                    letterSpacing: 2,
+                                                    fontWeight: FontWeight.w600,
                                                   ),
-                                                  backgroundColor: Colors.red,
                                                 ),
-                                              );
-                                            },
+                                              ),
+                                              backgroundColor: Colors.red,
+                                            ),
                                           );
+                                        },
+                                      );
                                     }
                                   },
                           ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hm_imoveis_pim/models/preferences/preferences_manager.dart';
 import 'package:hm_imoveis_pim/utils/colors_app.dart';
+import 'package:provider/provider.dart';
 
 class InfoTextWidget extends StatelessWidget {
   const InfoTextWidget({
@@ -10,6 +12,7 @@ class InfoTextWidget extends StatelessWidget {
   final String description;
   @override
   Widget build(BuildContext context) {
+    final darkTheme = Provider.of<PreferencesManager>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -18,7 +21,9 @@ class InfoTextWidget extends StatelessWidget {
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: ColorsApp.fourthColor(),
+            color: darkTheme.darkTheme()
+                ? ColorsApp.secondaryColor()
+                : ColorsApp.primaryColor(),
           ),
         ),
         const SizedBox(height: 10),

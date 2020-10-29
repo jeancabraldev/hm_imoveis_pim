@@ -19,7 +19,7 @@ class BitcoinScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        //padding: const EdgeInsets.only(top: 30),
+        padding: const EdgeInsets.only(top: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
@@ -66,6 +66,8 @@ class BitcoinScreen extends StatelessWidget {
                                 'ATUALIZAR VALOR',
                                 style: TextStyle(
                                   letterSpacing: 2,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                               onPressed: () => bitcoinManager.showPrice(),
