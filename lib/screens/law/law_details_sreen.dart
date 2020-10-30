@@ -52,52 +52,8 @@ class LawDetailsScreen extends StatelessWidget {
                   description: _informationLaw.text5,
                 ),
                 InfoTextWidget(
-                  title: 'Impactos para o Marketing da sua empresa',
-                  description: _informationLaw.text6,
-                ),
-                InfoTextWidget(
-                  title: 'Como fica o Inbound Marketing?',
-                  description: _informationLaw.text7,
-                ),
-                InfoTextWidget(
-                  title: 'Marketing de Conteúdo',
-                  description: _informationLaw.text8,
-                ),
-                InfoTextWidget(
-                  title: 'Geração de leads',
-                  description: _informationLaw.text9,
-                ),
-                InfoTextWidget(
-                  title: 'Email marketing',
-                  description: _informationLaw.text10,
-                ),
-                InfoTextWidget(
-                  title: 'Anúncios segmentados',
-                  description: _informationLaw.text11,
-                ),
-                InfoTextWidget(
-                  title: 'Remarketing no Facebook',
-                  description: _informationLaw.text12,
-                ),
-                InfoTextWidget(
-                  title: 'Facebook Leads Ads (Geração de Cadastros)',
-                  description: _informationLaw.text13,
-                ),
-                InfoTextWidget(
-                  title: 'Facebook Leads Ads (Geração de Cadastros)',
-                  description: _informationLaw.text13,
-                ),
-                InfoTextWidget(
-                  title: 'Pixel do Facebook',
-                  description: _informationLaw.text14,
-                ),
-                InfoTextWidget(
-                  title: 'Armazenamento de dados',
-                  description: _informationLaw.text15,
-                ),
-                InfoTextWidget(
                   title: 'Por onde começar?',
-                  description: _informationLaw.text16,
+                  description: _informationLaw.text6,
                 ),
               ],
             ),

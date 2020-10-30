@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hm_imoveis_pim/models/page/page_manager.dart';
 import 'package:hm_imoveis_pim/screens/about_us/about_screen.dart';
 import 'package:hm_imoveis_pim/screens/account/account_screen.dart';
@@ -18,6 +19,16 @@ class BaseScreen extends StatefulWidget {
 
 class _BaseScreenState extends State<BaseScreen> {
   final PageController pageController = PageController();
+
+  @override
+  void initState() {
+    super.initState();
+    //Travando a orientação na vertical
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Provider(

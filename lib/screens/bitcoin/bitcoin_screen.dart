@@ -39,7 +39,8 @@ class BitcoinScreen extends StatelessWidget {
             const SizedBox(height: 25),
             Card(
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
+                borderRadius: BorderRadius.circular(12),
+              ),
               margin: const EdgeInsets.symmetric(horizontal: 12),
               child: Padding(
                 padding:

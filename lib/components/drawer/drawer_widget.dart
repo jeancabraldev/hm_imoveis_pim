@@ -10,7 +10,7 @@ class DrawerWidget extends StatelessWidget {
         right: Radius.circular(30),
       ),
       child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.90,
+        width: MediaQuery.of(context).size.width * 0.82,
         child: Drawer(
           child: ListView(
             children: [

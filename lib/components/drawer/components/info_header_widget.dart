@@ -35,7 +35,7 @@ class InfoHeaderWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  userManager.user?.name ?? '',
+                  userManager.user?.name ?? 'Visitante',
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   textAlign: TextAlign.right,

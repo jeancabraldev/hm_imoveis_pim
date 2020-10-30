@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hm_imoveis_pim/models/bitcoin/bitcoin_manager.dart';
+import 'package:hm_imoveis_pim/models/launch/launch_manager.dart';
 import 'package:hm_imoveis_pim/models/preferences/preferences_manager.dart';
+import 'package:hm_imoveis_pim/models/properties/properties_manager.dart';
 import 'package:hm_imoveis_pim/models/user/user_manager.dart';
 import 'package:hm_imoveis_pim/screens/base/base_screen.dart';
 import 'package:hm_imoveis_pim/screens/bitcoin/bitcoin_details_screen.dart';
@@ -58,6 +60,14 @@ class _MyAppState extends State<MyApp> {
           create: (_) => BitcoinManager(),
           lazy: false,
         ),
+        ChangeNotifierProvider(
+          create: (_) => PropertiesManager(),
+          lazy: false,
+        ),
+        ChangeNotifierProvider(
+          create: (_) => LaunchManager(),
+          lazy: false,
+        )
       ],
       child: StreamBuilder(
         initialData: _preferencesManager,
