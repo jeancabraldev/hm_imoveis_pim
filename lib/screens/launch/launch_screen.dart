@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hm_imoveis_pim/components/drawer/drawer_widget.dart';
+import 'package:hm_imoveis_pim/components/search/search_widget.dart';
 import 'package:hm_imoveis_pim/models/launch/launch_manager.dart';
 import 'package:provider/provider.dart';
 
@@ -11,8 +12,23 @@ class LaunchScreen extends StatelessWidget {
     return Scaffold(
       drawer: DrawerWidget(),
       appBar: AppBar(
-        title: Text('Lançamentos'),
+        title: const Text('Lançamentos'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (_) => SearchWidget(
+                  onFieldSubmitted: (text) {
+                    Navigator.of(context).pop(text);
+                  },
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),

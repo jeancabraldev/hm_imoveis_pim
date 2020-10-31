@@ -70,6 +70,12 @@ class InformationScreen extends StatelessWidget {
                               .pushNamed('/transactionDetails'),
                         ),
                         const Divider(),
+                        ListTileWidget(
+                          title: 'Collapsing Toolbar',
+                          leading: FontAwesomeIcons.font,
+                          onTap: () => Navigator.of(context)
+                              .pushNamed('/propertiesDetails'),
+                        ),
                       ],
                     ),
                   ),

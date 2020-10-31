@@ -8,6 +8,7 @@ import 'package:hm_imoveis_pim/screens/base/base_screen.dart';
 import 'package:hm_imoveis_pim/screens/bitcoin/bitcoin_details_screen.dart';
 import 'package:hm_imoveis_pim/screens/law/law_details_sreen.dart';
 import 'package:hm_imoveis_pim/screens/login/login_screen.dart';
+import 'package:hm_imoveis_pim/screens/properties/properties_details.dart';
 import 'package:hm_imoveis_pim/screens/signup/sinup_screen.dart';
 import 'package:hm_imoveis_pim/screens/transaction/transaction_details_screen.dart';
 import 'package:hm_imoveis_pim/utils/colors_app.dart';
@@ -127,6 +128,11 @@ class _MyAppState extends State<MyApp> {
                 case '/lawDetails':
                   return MaterialPageRoute(
                     builder: (_) => LawDetailsScreen(),
+                  );
+
+                case '/propertiesDetails':
+                  return MaterialPageRoute(
+                    builder: (_) => PropertiesDetails(),
                   );
                 case '/transactionDetails':
                   return MaterialPageRoute(
