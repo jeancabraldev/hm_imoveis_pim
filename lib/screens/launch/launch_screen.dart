@@ -12,20 +12,60 @@ class LaunchScreen extends StatelessWidget {
     return Scaffold(
       drawer: DrawerWidget(),
       appBar: AppBar(
-        title: const Text('Lançamentos'),
+        title: Consumer<LaunchManager>(
+          builder: (_, launchManager, __) {
+            if (launchManager.search.isEmpty) {
+              return const Text('Lançamentos');
+            } else {
+              return LayoutBuilder(
+                builder: (_, constraints) {
+                  return GestureDetector(
+                    onTap: () async {
+                      final search = await showDialog<String>(
+                          context: context,
+                          builder: (_) => SearchWidget(launchManager.search));
+                      //Se a pesquisa for diferente de nula a pesquisa será enviada properties manager
+                      if (search != null) {
+                        launchManager.search = search;
+                      }
+                    },
+                    // ignore: sized_box_for_whitespace
+                    child: Container(
+                      width: constraints.biggest.width,
+                      child: Text(
+                        launchManager.search,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  );
+                },
+              );
+            }
+          },
+        ),
         centerTitle: true,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (_) => SearchWidget(
-                  onFieldSubmitted: (text) {
-                    Navigator.of(context).pop(text);
+          Consumer<LaunchManager>(
+            builder: (_, launchManager, __) {
+              if (launchManager.search.isEmpty) {
+                return IconButton(
+                  icon: const Icon(Icons.search),
+                  onPressed: () async {
+                    final search = await showDialog<String>(
+                        context: context,
+                        builder: (_) => SearchWidget(launchManager.search));
+                    //Se a pesquisa for diferente de nula a pesquisa será enviada para launch manager
+                    if (search != null) {
+                      launchManager.search = search;
+                    }
                   },
-                ),
-              );
+                );
+              } else {
+                return IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () async => launchManager.search = '',
+                );
+              }
             },
           ),
         ],
@@ -34,11 +74,12 @@ class LaunchScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
         child: Consumer<LaunchManager>(
           builder: (_, launchManager, __) {
+            final filteredLaunch = launchManager.filteredLaunch;
             return ListView.builder(
-              itemCount: launchManager.allLaunchs.length,
+              itemCount: filteredLaunch.length,
               itemBuilder: (_, index) {
                 return LaunchListTileWidget(
-                  launchManager.allLaunchs[index],
+                  filteredLaunch[index],
                 );
               },
             );

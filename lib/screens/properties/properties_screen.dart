@@ -11,20 +11,60 @@ class PropertiesScreen extends StatelessWidget {
     return Scaffold(
       drawer: DrawerWidget(),
       appBar: AppBar(
-        title: const Text('Imóveis'),
+        title: Consumer<PropertiesManager>(
+          builder: (_, propertiesManager, __) {
+            if (propertiesManager.search.isEmpty) {
+              return const Text('Imóveis');
+            } else {
+              return LayoutBuilder(
+                builder: (_, constraints) {
+                  return GestureDetector(
+                    onTap: () async {
+                      final search = await showDialog<String>(
+                          context: context,
+                          builder: (_) =>
+                              SearchWidget(propertiesManager.search));
+                      //Se a pesquisa for diferente de nula a pesquisa será enviada properties manager
+                      if (search != null) {
+                        propertiesManager.search = search;
+                      }
+                    },
+                    child: Container(
+                      width: constraints.biggest.width,
+                      child: Text(
+                        propertiesManager.search,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  );
+                },
+              );
+            }
+          },
+        ),
         centerTitle: true,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (_) => SearchWidget(
-                  onFieldSubmitted: (text) {
-                    Navigator.of(context).pop(text);
+          Consumer<PropertiesManager>(
+            builder: (_, propertiesManager, __) {
+              if (propertiesManager.search.isEmpty) {
+                return IconButton(
+                  icon: const Icon(Icons.search),
+                  onPressed: () async {
+                    final search = await showDialog<String>(
+                        context: context,
+                        builder: (_) => SearchWidget(propertiesManager.search));
+                    //Se a pesquisa for diferente de nula a pesquisa será enviada para properties manager
+                    if (search != null) {
+                      propertiesManager.search = search;
+                    }
                   },
-                ),
-              );
+                );
+              } else {
+                return IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () async => propertiesManager.search = '',
+                );
+              }
             },
           ),
         ],
@@ -33,11 +73,13 @@ class PropertiesScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
         child: Consumer<PropertiesManager>(
           builder: (_, propertiesManager, __) {
+            final filteredProperties = propertiesManager.filteredProperties;
             return ListView.builder(
-              itemCount: propertiesManager.allProperties.length,
+              itemCount: filteredProperties.length,
               itemBuilder: (_, index) {
                 return PropertiesListTileWidget(
-                    propertiesManager.allProperties[index]);
+                  filteredProperties[index],
+                );
               },
             );
           },

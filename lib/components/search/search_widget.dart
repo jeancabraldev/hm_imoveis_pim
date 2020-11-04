@@ -4,10 +4,8 @@ import 'package:hm_imoveis_pim/utils/colors_app.dart';
 import 'package:provider/provider.dart';
 
 class SearchWidget extends StatelessWidget {
-  const SearchWidget({this.onFieldSubmitted});
-
-  final ValueChanged<String> onFieldSubmitted;
-
+  const SearchWidget(this.initialText);
+  final String initialText;
   @override
   Widget build(BuildContext context) {
     final darkTheme = Provider.of<PreferencesManager>(context);
@@ -22,6 +20,7 @@ class SearchWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(30),
             ),
             child: TextFormField(
+              initialValue: initialText,
               textInputAction: TextInputAction.search,
               autofocus: true,
               decoration: InputDecoration(
@@ -32,12 +31,12 @@ class SearchWidget extends StatelessWidget {
                     Icons.arrow_back,
                     color: !darkTheme.darkTheme()
                         ? ColorsApp.primaryColor()
-                        : ColorsApp.secondaryColor(),
+                        : Colors.white,
                   ),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
               ),
-              onFieldSubmitted: onFieldSubmitted,
+              onFieldSubmitted: (text) => Navigator.of(context).pop(text),
             ),
           ),
         ),
