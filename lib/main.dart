@@ -15,6 +15,8 @@ import 'package:hm_imoveis_pim/utils/colors_app.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'models/properties/properties.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final sharedPreferences = await SharedPreferences.getInstance();
@@ -132,7 +134,9 @@ class _MyAppState extends State<MyApp> {
 
                 case '/propertiesDetails':
                   return MaterialPageRoute(
-                    builder: (_) => PropertiesDetails(),
+                    builder: (_) => PropertiesDetails(
+                      settings.arguments as Properties,
+                    ),
                   );
                 case '/transactionDetails':
                   return MaterialPageRoute(
