@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hm_imoveis_pim/models/bitcoin/bitcoin_manager.dart';
+import 'package:hm_imoveis_pim/models/launch/launch.dart';
 import 'package:hm_imoveis_pim/models/launch/launch_manager.dart';
 import 'package:hm_imoveis_pim/models/preferences/preferences_manager.dart';
 import 'package:hm_imoveis_pim/models/properties/properties_manager.dart';
 import 'package:hm_imoveis_pim/models/user/user_manager.dart';
 import 'package:hm_imoveis_pim/screens/base/base_screen.dart';
 import 'package:hm_imoveis_pim/screens/bitcoin/bitcoin_details_screen.dart';
+import 'package:hm_imoveis_pim/screens/launch/launch_details.dart';
 import 'package:hm_imoveis_pim/screens/law/law_details_sreen.dart';
 import 'package:hm_imoveis_pim/screens/login/login_screen.dart';
 import 'package:hm_imoveis_pim/screens/properties/properties_details.dart';
@@ -136,6 +138,12 @@ class _MyAppState extends State<MyApp> {
                   return MaterialPageRoute(
                     builder: (_) => PropertiesDetails(
                       settings.arguments as Properties,
+                    ),
+                  );
+                case '/launchDetails':
+                  return MaterialPageRoute(
+                    builder: (_) => LaunchDetails(
+                      settings.arguments as Launch,
                     ),
                   );
                 case '/transactionDetails':

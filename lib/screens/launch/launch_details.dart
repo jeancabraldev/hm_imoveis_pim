@@ -1,18 +1,15 @@
 import 'package:carousel_pro/carousel_pro.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hm_imoveis_pim/components/buttons/raised/raised_button_widget.dart';
+import 'package:hm_imoveis_pim/models/launch/launch.dart';
 import 'package:hm_imoveis_pim/models/preferences/preferences_manager.dart';
-import 'package:hm_imoveis_pim/models/properties/properties.dart';
 import 'package:hm_imoveis_pim/utils/colors_app.dart';
 import 'package:provider/provider.dart';
 
-class PropertiesDetails extends StatelessWidget {
-  const PropertiesDetails(this.properties);
-
-  final Properties properties;
-
+class LaunchDetails extends StatelessWidget {
+  const LaunchDetails(this.launch);
+  final Launch launch;
   @override
   Widget build(BuildContext context) {
     final darkTheme = Provider.of<PreferencesManager>(context);
@@ -22,7 +19,7 @@ class PropertiesDetails extends StatelessWidget {
       backgroundColor:
           !darkTheme.darkTheme() ? Colors.white : ColorsApp.primaryColorDark(),
       appBar: AppBar(
-        title: Text(properties.title),
+        title: Text(launch.title),
         centerTitle: true,
       ),
       body: ListView(
@@ -30,7 +27,7 @@ class PropertiesDetails extends StatelessWidget {
           AspectRatio(
             aspectRatio: 1.55,
             child: Carousel(
-              images: properties.images.map((url) {
+              images: launch.images.map((url) {
                 return NetworkImage(url);
               }).toList(),
               dotSize: 4,
@@ -48,7 +45,7 @@ class PropertiesDetails extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  properties.title,
+                  launch.title,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 22,
@@ -63,7 +60,7 @@ class PropertiesDetails extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.baseline,
                   children: [
                     Text(
-                      'R\$ ${properties.price.toStringAsFixed(3)}',
+                      'R\$ ${launch.price.toStringAsFixed(3)}',
                       style: const TextStyle(
                           fontSize: 20, fontWeight: FontWeight.bold),
                     ),
@@ -78,7 +75,7 @@ class PropertiesDetails extends StatelessWidget {
                         ),
                         const SizedBox(width: 10),
                         Text(
-                          properties.thenBitcoin,
+                          launch.thenBitcoin,
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -97,7 +94,7 @@ class PropertiesDetails extends StatelessWidget {
                       Column(
                         children: [
                           Text(
-                            properties.footage,
+                            launch.footage,
                             style: styleText,
                           ),
                           const Text('Área'),
@@ -106,7 +103,7 @@ class PropertiesDetails extends StatelessWidget {
                       Column(
                         children: [
                           Text(
-                            properties.dormitories,
+                            launch.dormitories,
                             style: styleText,
                           ),
                           const Text('Quartos'),
@@ -115,7 +112,7 @@ class PropertiesDetails extends StatelessWidget {
                       Column(
                         children: [
                           Text(
-                            properties.wc,
+                            launch.wc,
                             style: styleText,
                           ),
                           const Text('Banheiros'),
@@ -124,7 +121,7 @@ class PropertiesDetails extends StatelessWidget {
                       Column(
                         children: [
                           Text(
-                            properties.garage,
+                            launch.garage,
                             style: styleText,
                           ),
                           const Text('Vagas'),
@@ -139,7 +136,7 @@ class PropertiesDetails extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('${properties.district} - ${properties.state}'),
+                      Text('${launch.district} - ${launch.state}'),
                       GestureDetector(
                         onTap: () {
                           //TODO: ABRIR MAPA
@@ -158,7 +155,7 @@ class PropertiesDetails extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 15, bottom: 15),
                   child: Text(
-                    properties.description,
+                    launch.description,
                     textAlign: TextAlign.justify,
                   ),
                 ),
@@ -180,7 +177,7 @@ class PropertiesDetails extends StatelessWidget {
               ),
               color: ColorsApp.secondaryColor(),
             ),
-          ),
+          )
         ],
       ),
     );
