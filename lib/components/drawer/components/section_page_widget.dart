@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hm_imoveis_pim/components/drawer/components/page_tile_widget.dart';
 import 'package:hm_imoveis_pim/models/page/page_manager.dart';
+import 'package:hm_imoveis_pim/models/user/user_manager.dart';
 import 'package:provider/provider.dart';
 
 class SectionPageWidget extends StatelessWidget {
@@ -52,11 +53,18 @@ class SectionPageWidget extends StatelessWidget {
           page: 6,
           highLighted: currentPage == 6,
         ),
-        PageTileWidget(
-          text: 'Minha Conta',
-          icon: FontAwesomeIcons.userAlt,
-          page: 7,
-          highLighted: currentPage == 7,
+        Consumer<UserManager>(
+          builder: (_, userManager, __) {
+            if (userManager.isLoggedIn) {
+              return PageTileWidget(
+                text: 'Minha Conta',
+                icon: FontAwesomeIcons.userAlt,
+                page: 7,
+                highLighted: currentPage == 7,
+              );
+            }
+            return Container();
+          },
         ),
         PageTileWidget(
           text: 'Configurações',

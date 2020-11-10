@@ -34,7 +34,7 @@ class InformationScreen extends StatelessWidget {
               ),
             ),
             Container(
-              height: MediaQuery.of(context).size.height * 0.39,
+              height: MediaQuery.of(context).size.height * 0.29,
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -63,19 +63,13 @@ class InformationScreen extends StatelessWidget {
                               .pushNamed('/bitcoinDetails'),
                         ),
                         const Divider(),
-                        ListTileWidget(
+/*                        ListTileWidget(
                           title: 'Como realizar uma transação?',
                           leading: FontAwesomeIcons.handsHelping,
                           onTap: () => Navigator.of(context)
                               .pushNamed('/transactionDetails'),
                         ),
-                        const Divider(),
-                        ListTileWidget(
-                          title: 'Collapsing Toolbar',
-                          leading: FontAwesomeIcons.font,
-                          onTap: () => Navigator.of(context)
-                              .pushNamed('/propertiesDetails'),
-                        ),
+                        const Divider(),*/
                       ],
                     ),
                   ),

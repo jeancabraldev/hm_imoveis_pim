@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hm_imoveis_pim/models/bitcoin/bitcoin_manager.dart';
+import 'package:hm_imoveis_pim/models/contact_us/contact_us_manager.dart';
 import 'package:hm_imoveis_pim/models/launch/launch.dart';
 import 'package:hm_imoveis_pim/models/launch/launch_manager.dart';
 import 'package:hm_imoveis_pim/models/preferences/preferences_manager.dart';
@@ -7,9 +8,11 @@ import 'package:hm_imoveis_pim/models/properties/properties_manager.dart';
 import 'package:hm_imoveis_pim/models/user/user_manager.dart';
 import 'package:hm_imoveis_pim/screens/base/base_screen.dart';
 import 'package:hm_imoveis_pim/screens/bitcoin/bitcoin_details_screen.dart';
+import 'package:hm_imoveis_pim/screens/launch/interest_launch.dart';
 import 'package:hm_imoveis_pim/screens/launch/launch_details.dart';
 import 'package:hm_imoveis_pim/screens/law/law_details_sreen.dart';
 import 'package:hm_imoveis_pim/screens/login/login_screen.dart';
+import 'package:hm_imoveis_pim/screens/properties/interest_properties.dart';
 import 'package:hm_imoveis_pim/screens/properties/properties_details.dart';
 import 'package:hm_imoveis_pim/screens/signup/sinup_screen.dart';
 import 'package:hm_imoveis_pim/screens/transaction/transaction_details_screen.dart';
@@ -72,7 +75,11 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
           create: (_) => LaunchManager(),
           lazy: false,
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ContactUsManager(),
+          lazy: false,
+        ),
       ],
       child: StreamBuilder(
         initialData: _preferencesManager,
@@ -108,7 +115,10 @@ class _MyAppState extends State<MyApp> {
               visualDensity: VisualDensity.adaptivePlatformDensity,
               fontFamily: 'Montserrat',
               appBarTheme: const AppBarTheme(elevation: 0),
-              cardColor: ColorsApp.primaryColorDark(),
+              //cardColor: ColorsApp.primaryColorDark(),
+              cardTheme: CardTheme(
+                color: ColorsApp.primaryColorDark(),
+              ),
               canvasColor: ColorsApp.backgroundColorDark(),
             ),
             themeMode: _preferencesManager.darkTheme()
@@ -133,16 +143,27 @@ class _MyAppState extends State<MyApp> {
                   return MaterialPageRoute(
                     builder: (_) => LawDetailsScreen(),
                   );
-
                 case '/propertiesDetails':
                   return MaterialPageRoute(
                     builder: (_) => PropertiesDetails(
                       settings.arguments as Properties,
                     ),
                   );
+                case '/interestProperties':
+                  return MaterialPageRoute(
+                    builder: (_) => InterestProperties(
+                      settings.arguments as Properties,
+                    ),
+                  );
                 case '/launchDetails':
                   return MaterialPageRoute(
                     builder: (_) => LaunchDetails(
+                      settings.arguments as Launch,
+                    ),
+                  );
+                case '/interestLaunch':
+                  return MaterialPageRoute(
+                    builder: (_) => InterestLaunch(
                       settings.arguments as Launch,
                     ),
                   );

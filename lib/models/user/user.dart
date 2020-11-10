@@ -17,8 +17,7 @@ class User {
 
   Firestore firestore = Firestore.instance;
 
-  DocumentReference get firestoreReference =>
-      Firestore.instance.document('users/$id');
+  DocumentReference get firestoreReference => firestore.document('users/$id');
 
   //Salvando dados do usuário
   Future<void> saveData() async {

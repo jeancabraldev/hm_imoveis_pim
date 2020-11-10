@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hm_imoveis_pim/components/buttons/raised/raised_button_widget.dart';
 import 'package:hm_imoveis_pim/models/launch/launch.dart';
 import 'package:hm_imoveis_pim/models/preferences/preferences_manager.dart';
+import 'package:hm_imoveis_pim/models/user/user_manager.dart';
 import 'package:hm_imoveis_pim/utils/colors_app.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +20,7 @@ class LaunchDetails extends StatelessWidget {
       backgroundColor:
           !darkTheme.darkTheme() ? Colors.white : ColorsApp.primaryColorDark(),
       appBar: AppBar(
-        title: Text(launch.title),
+        title: Text('Código ${launch.code}'),
         centerTitle: true,
       ),
       body: ListView(
@@ -40,7 +41,7 @@ class LaunchDetails extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -55,41 +56,46 @@ class LaunchDetails extends StatelessWidget {
                   ),
                 ),
                 const Divider(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.baseline,
-                  children: [
-                    Text(
-                      'R\$ ${launch.price.toStringAsFixed(3)}',
-                      style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.baseline,
-                      children: [
-                        Icon(
-                          FontAwesomeIcons.bitcoin,
-                          color: !darkTheme.darkTheme()
-                              ? ColorsApp.primaryColor()
-                              : ColorsApp.secondaryColor(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    children: [
+                      Text(
+                        'R\$ ${launch.price.toStringAsFixed(3)}',
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
-                        const SizedBox(width: 10),
-                        Text(
-                          launch.thenBitcoin,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.bitcoin,
+                            color: !darkTheme.darkTheme()
+                                ? ColorsApp.primaryColor()
+                                : ColorsApp.secondaryColor(),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          const SizedBox(width: 10),
+                          Text(
+                            launch.thenBitcoin,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 const Divider(),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 15),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
                         children: [
@@ -132,28 +138,71 @@ class LaunchDetails extends StatelessWidget {
                 ),
                 const Divider(),
                 Padding(
-                  padding: const EdgeInsets.only(top: 15, bottom: 20),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('${launch.district} - ${launch.state}'),
+                      Column(
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.hardHat,
+                            color: !darkTheme.darkTheme()
+                                ? ColorsApp.primaryColor()
+                                : ColorsApp.secondaryColor(),
+                          ),
+                          Text(launch.situation),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.solidBuilding,
+                            color: !darkTheme.darkTheme()
+                                ? ColorsApp.primaryColor()
+                                : ColorsApp.secondaryColor(),
+                          ),
+                          Text(launch.type),
+                        ],
+                      ),
                       GestureDetector(
                         onTap: () {
                           //TODO: ABRIR MAPA
                         },
                         child: Column(
-                          children: const [
-                            Icon(FontAwesomeIcons.map),
-                            Text('Localização')
+                          children: [
+                            Icon(
+                              FontAwesomeIcons.map,
+                              color: !darkTheme.darkTheme()
+                                  ? ColorsApp.primaryColor()
+                                  : ColorsApp.secondaryColor(),
+                            ),
+                            const Text('Localização')
                           ],
                         ),
+                      )
+                    ],
+                  ),
+                ),
+                const Divider(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        launch.address,
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        '${launch.district} - ${launch.state}',
+                        style: const TextStyle(fontSize: 12),
                       ),
                     ],
                   ),
                 ),
                 const Divider(),
                 Padding(
-                  padding: const EdgeInsets.only(top: 15, bottom: 15),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Text(
                     launch.description,
                     textAlign: TextAlign.justify,
@@ -164,18 +213,35 @@ class LaunchDetails extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(12),
-            child: RaisedButtonWidget(
-              onPressed: () {
-                //TODO: TELA DE INTERESSE
+            child: Consumer<UserManager>(
+              builder: (_, userManager, __) {
+                if (userManager.isLoggedIn) {
+                  return RaisedButtonWidget(
+                    onPressed: () => Navigator.of(context)
+                        .pushNamed('/interestLaunch', arguments: launch),
+                    text: const Text(
+                      'TENHO INTERESSE',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          wordSpacing: 2,
+                          color: Colors.black),
+                    ),
+                    color: ColorsApp.secondaryColor(),
+                  );
+                } else {
+                  return RaisedButtonWidget(
+                    onPressed: () => Navigator.of(context).pushNamed('/login'),
+                    text: const Text(
+                      'FAZER LOGIN',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          wordSpacing: 2,
+                          color: Colors.black),
+                    ),
+                    color: ColorsApp.secondaryColor(),
+                  );
+                }
               },
-              text: const Text(
-                'TENHO INTERESSE',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    wordSpacing: 2,
-                    color: Colors.black),
-              ),
-              color: ColorsApp.secondaryColor(),
             ),
           )
         ],

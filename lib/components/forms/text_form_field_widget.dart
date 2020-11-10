@@ -17,6 +17,7 @@ class TextFormFieldWidget extends StatelessWidget {
     this.validator,
     this.controller,
     this.onSaved,
+    this.initialValue,
   });
 
   final TextInputType textInputType;
@@ -31,6 +32,7 @@ class TextFormFieldWidget extends StatelessWidget {
   final FormFieldValidator<String> validator;
   final TextEditingController controller;
   final FormFieldSetter<String> onSaved;
+  final String initialValue;
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +63,7 @@ class TextFormFieldWidget extends StatelessWidget {
       validator: validator,
       controller: controller,
       onSaved: onSaved,
+      initialValue: initialValue,
     );
   }
 }

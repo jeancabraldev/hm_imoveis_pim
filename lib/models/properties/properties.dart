@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Properties {
   Properties.fromDocument(DocumentSnapshot document) {
     id = document.documentID;
+    code = document['code'] as String;
     title = document['title'] as String;
     description = document['description'] as String;
     price = document['price'] as int;
@@ -21,6 +22,7 @@ class Properties {
   }
 
   String id;
+  String code;
   String title;
   String description;
   int price;

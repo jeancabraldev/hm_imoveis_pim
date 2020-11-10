@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Launch {
   Launch.fromDocument(DocumentSnapshot document) {
     id = document.documentID;
+    code = document['code'] as String;
     title = document['title'] as String;
     description = document['description'] as String;
     price = document['price'] as int;
@@ -12,6 +13,7 @@ class Launch {
     numberAddress = document['number_address'] as String;
     address = document['address'] as String;
     type = document['type'] as String;
+    situation = document['situation'] as String;
     state = document['state'] as String;
     garage = document['garage'] as String;
     wc = document['wc'] as String;
@@ -21,6 +23,7 @@ class Launch {
   }
 
   String id;
+  String code;
   String title;
   String description;
   int price;
@@ -30,6 +33,7 @@ class Launch {
   String numberAddress;
   String address;
   String type;
+  String situation;
   String state;
   String garage;
   String wc;

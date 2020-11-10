@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hm_imoveis_pim/components/buttons/raised/raised_button_widget.dart';
 import 'package:hm_imoveis_pim/models/preferences/preferences_manager.dart';
 import 'package:hm_imoveis_pim/models/properties/properties.dart';
+import 'package:hm_imoveis_pim/models/user/user_manager.dart';
 import 'package:hm_imoveis_pim/utils/colors_app.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +23,7 @@ class PropertiesDetails extends StatelessWidget {
       backgroundColor:
           !darkTheme.darkTheme() ? Colors.white : ColorsApp.primaryColorDark(),
       appBar: AppBar(
-        title: Text(properties.title),
+        title: Text('Código ${properties.code}'),
         centerTitle: true,
       ),
       body: ListView(
@@ -43,7 +44,7 @@ class PropertiesDetails extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -58,41 +59,46 @@ class PropertiesDetails extends StatelessWidget {
                   ),
                 ),
                 const Divider(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.baseline,
-                  children: [
-                    Text(
-                      'R\$ ${properties.price.toStringAsFixed(3)}',
-                      style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.baseline,
-                      children: [
-                        Icon(
-                          FontAwesomeIcons.bitcoin,
-                          color: !darkTheme.darkTheme()
-                              ? ColorsApp.primaryColor()
-                              : ColorsApp.secondaryColor(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    children: [
+                      Text(
+                        'R\$ ${properties.price.toStringAsFixed(3)}',
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
-                        const SizedBox(width: 10),
-                        Text(
-                          properties.thenBitcoin,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.bitcoin,
+                            color: !darkTheme.darkTheme()
+                                ? ColorsApp.primaryColor()
+                                : ColorsApp.secondaryColor(),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          const SizedBox(width: 10),
+                          Text(
+                            properties.thenBitcoin,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 const Divider(),
                 Padding(
                   padding: const EdgeInsets.only(top: 10, bottom: 15),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
                         children: [
@@ -135,28 +141,49 @@ class PropertiesDetails extends StatelessWidget {
                 ),
                 const Divider(),
                 Padding(
-                  padding: const EdgeInsets.only(top: 15, bottom: 20),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('${properties.district} - ${properties.state}'),
                       GestureDetector(
                         onTap: () {
                           //TODO: ABRIR MAPA
                         },
                         child: Column(
-                          children: const [
-                            Icon(FontAwesomeIcons.map),
-                            Text('Localização')
+                          children: [
+                            Icon(
+                              FontAwesomeIcons.map,
+                              color: !darkTheme.darkTheme()
+                                  ? ColorsApp.primaryColor()
+                                  : ColorsApp.secondaryColor(),
+                            ),
+                            const Text('Localização')
                           ],
                         ),
+                      )
+                    ],
+                  ),
+                ),
+                const Divider(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        properties.address,
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        '${properties.district} - ${properties.state}',
+                        style: const TextStyle(fontSize: 12),
                       ),
                     ],
                   ),
                 ),
                 const Divider(),
                 Padding(
-                  padding: const EdgeInsets.only(top: 15, bottom: 15),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Text(
                     properties.description,
                     textAlign: TextAlign.justify,
@@ -167,18 +194,38 @@ class PropertiesDetails extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(12),
-            child: RaisedButtonWidget(
-              onPressed: () {
-                //TODO: TELA DE INTERESSE
+            child: Consumer<UserManager>(
+              builder: (_, userManager, __) {
+                if (userManager.isLoggedIn) {
+                  return RaisedButtonWidget(
+                    onPressed: () => Navigator.of(context).pushNamed(
+                        '/interestProperties',
+                        arguments: properties),
+                    text: const Text(
+                      'TENHO INTERESSE',
+                      style: TextStyle(
+                        letterSpacing: 2,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    color: ColorsApp.secondaryColor(),
+                  );
+                } else {
+                  return RaisedButtonWidget(
+                    onPressed: () => Navigator.of(context).pushNamed('/login'),
+                    text: const Text(
+                      'FAZER LOGIN',
+                      style: TextStyle(
+                        letterSpacing: 2,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    color: ColorsApp.secondaryColor(),
+                  );
+                }
               },
-              text: const Text(
-                'TENHO INTERESSE',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    wordSpacing: 2,
-                    color: Colors.black),
-              ),
-              color: ColorsApp.secondaryColor(),
             ),
           ),
         ],
