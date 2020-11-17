@@ -7,8 +7,6 @@ import 'package:hm_imoveis_pim/components/forms/text_form_field_widget.dart';
 import 'package:hm_imoveis_pim/helpers/validator.dart';
 import 'package:hm_imoveis_pim/models/contact_us/contact_us.dart';
 import 'package:hm_imoveis_pim/models/contact_us/contact_us_manager.dart';
-import 'package:hm_imoveis_pim/models/page/page_manager.dart';
-import 'package:hm_imoveis_pim/models/preferences/preferences_manager.dart';
 import 'package:hm_imoveis_pim/utils/colors_app.dart';
 import 'package:provider/provider.dart';
 
@@ -19,8 +17,6 @@ class ContactUsScreen extends StatelessWidget {
   final ContactUs contactUs = ContactUs();
   @override
   Widget build(BuildContext context) {
-    final PageManager _pageManager = context.watch<PageManager>();
-    final darkTheme = Provider.of<PreferencesManager>(context);
     return Scaffold(
       key: _scaffoldKey,
       drawer: DrawerWidget(),
@@ -69,6 +65,7 @@ class ContactUsScreen extends StatelessWidget {
                             prefixIcon: FontAwesomeIcons.userAlt,
                             textInputType: TextInputType.text,
                             hintText: 'Nome Completo',
+                            enabled: !contactUsManager.loading,
                             onSaved: (name) => contactUs.name = name,
                             validator: (name) {
                               if (name.isEmpty) {
@@ -85,6 +82,7 @@ class ContactUsScreen extends StatelessWidget {
                               prefixIcon: FontAwesomeIcons.solidEnvelope,
                               textInputType: TextInputType.emailAddress,
                               autocorrect: false,
+                              enabled: !contactUsManager.loading,
                               hintText: 'E-mail',
                               onSaved: (email) => contactUs.email = email,
                               validator: (email) {
@@ -100,6 +98,7 @@ class ContactUsScreen extends StatelessWidget {
                           TextFormFieldWidget(
                             prefixIcon: FontAwesomeIcons.solidComment,
                             textInputType: TextInputType.text,
+                            enabled: !contactUsManager.loading,
                             hintText: 'Deixe sua mensagem',
                             onSaved: (message) => contactUs.message = message,
                             validator: (write) {
@@ -120,57 +119,9 @@ class ContactUsScreen extends StatelessWidget {
                                   await contactUsManager.saveContact(
                                       contactUs: contactUs,
                                       onSuccess: () {
-                                        showDialog(
-                                            barrierDismissible: false,
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return AlertDialog(
-                                                content: SingleChildScrollView(
-                                                  child: ListBody(
-                                                    children: const [
-                                                      Text(
-                                                        'Recebemos a sua mensagem!',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: TextStyle(
-                                                            fontSize: 18),
-                                                      ),
-                                                      SizedBox(height: 10),
-                                                      Text(
-                                                        'Em breve entraremos em contato com você.',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                      ),
-                                                      SizedBox(height: 10),
-                                                      Text(
-                                                        ':)',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: TextStyle(
-                                                          fontSize: 28,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      _pageManager.setPage(0);
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                    child: Text(
-                                                      'FECHAR',
-                                                      style: TextStyle(
-                                                        color: ColorsApp
-                                                            .primaryColor(),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            });
+                                        Navigator.of(context)
+                                            .pushReplacementNamed(
+                                                '/confirmationMessageScreen');
                                       },
                                       onFail: (e) {
                                         _scaffoldKey.currentState.showSnackBar(
@@ -182,14 +133,20 @@ class ContactUsScreen extends StatelessWidget {
                                       });
                                 }
                               },
-                              text: const Text(
-                                'ENVIAR MENSAGEM',
-                                style: TextStyle(
-                                  letterSpacing: 2,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                              text: contactUsManager.loading
+                                  ? CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation(
+                                        ColorsApp.primaryColor(),
+                                      ),
+                                    )
+                                  : const Text(
+                                      'ENVIAR MENSAGEM',
+                                      style: TextStyle(
+                                        letterSpacing: 2,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                               color: ColorsApp.secondaryColor(),
                             ),
                           ),

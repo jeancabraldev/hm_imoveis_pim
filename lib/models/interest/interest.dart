@@ -1,26 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class ContactUs {
-  ContactUs({
-    this.name,
-    this.email,
-    this.message,
-  });
-
-  Firestore firestore = Firestore.instance;
-
-  String id;
+class Interest {
+  String code;
   String name;
   String email;
   String message;
 
-  //Salvando menssagem do usuário
+  Firestore firestore = Firestore.instance;
+
+  //Salvando os dados do imóvel de interesse do usuário
   Future<void> saveData() async {
-    await firestore.collection('contact').document().setData(toMap());
+    await firestore.collection('interest').document().setData(toMap());
   }
 
   Map<String, dynamic> toMap() {
     return {
+      'code': code,
       'name': name,
       'email': email,
       'message': message,

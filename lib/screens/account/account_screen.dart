@@ -50,18 +50,18 @@ class AccountScreen extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ListTileWidget(
-                            title: 'Meus Dados',
-                            leading: FontAwesomeIcons.userAlt,
-                            onTap: () {
-                              //TODO: CRIAR TELA DOS DADOS DO USUÁRIO
-                            }),
+                          title: 'Meus Dados',
+                          leading: FontAwesomeIcons.userAlt,
+                          onTap: () =>
+                              Navigator.of(context).pushNamed('/myAccount'),
+                        ),
                         const Divider(),
                         ListTileWidget(
-                            title: 'Minhas Transações',
-                            leading: FontAwesomeIcons.handsHelping,
-                            onTap: () {
-                              //TODO: CRIAR TELA DAS TRANSAÇÕES DO CLIENTE
-                            }),
+                          title: 'Minhas Transações',
+                          leading: FontAwesomeIcons.handsHelping,
+                          onTap: () =>
+                              Navigator.of(context).pushNamed('/myTransaction'),
+                        ),
                         const Divider(),
                       ],
                     ),

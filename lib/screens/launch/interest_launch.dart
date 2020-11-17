@@ -7,7 +7,7 @@ import 'package:hm_imoveis_pim/models/launch/launch.dart';
 import 'package:hm_imoveis_pim/utils/colors_app.dart';
 
 class InterestLaunch extends StatelessWidget {
-  const InterestLaunch(this.launch);
+  const InterestLaunch({this.launch});
   final Launch launch;
   @override
   Widget build(BuildContext context) {

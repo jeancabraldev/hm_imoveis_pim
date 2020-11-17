@@ -15,7 +15,7 @@ class InfoHeaderWidget extends StatelessWidget {
           decoration: const BoxDecoration(
             shape: BoxShape.circle,
             image: DecorationImage(
-              image: AssetImage('assets/images/house.png'),
+              image: AssetImage('assets/images/logo.png'),
               fit: BoxFit.cover,
             ),
           ),

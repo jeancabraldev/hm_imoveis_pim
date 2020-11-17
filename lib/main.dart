@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hm_imoveis_pim/models/bitcoin/bitcoin_manager.dart';
 import 'package:hm_imoveis_pim/models/contact_us/contact_us_manager.dart';
+import 'package:hm_imoveis_pim/models/interest/interest_manager.dart';
 import 'package:hm_imoveis_pim/models/launch/launch.dart';
 import 'package:hm_imoveis_pim/models/launch/launch_manager.dart';
 import 'package:hm_imoveis_pim/models/preferences/preferences_manager.dart';
 import 'package:hm_imoveis_pim/models/properties/properties_manager.dart';
 import 'package:hm_imoveis_pim/models/user/user_manager.dart';
+import 'package:hm_imoveis_pim/screens/account/my_account_screen.dart';
 import 'package:hm_imoveis_pim/screens/base/base_screen.dart';
 import 'package:hm_imoveis_pim/screens/bitcoin/bitcoin_details_screen.dart';
+import 'package:hm_imoveis_pim/screens/confirmation_message/confirmation_message_screen.dart';
 import 'package:hm_imoveis_pim/screens/launch/interest_launch.dart';
 import 'package:hm_imoveis_pim/screens/launch/launch_details.dart';
 import 'package:hm_imoveis_pim/screens/law/law_details_sreen.dart';
@@ -15,6 +18,7 @@ import 'package:hm_imoveis_pim/screens/login/login_screen.dart';
 import 'package:hm_imoveis_pim/screens/properties/interest_properties.dart';
 import 'package:hm_imoveis_pim/screens/properties/properties_details.dart';
 import 'package:hm_imoveis_pim/screens/signup/sinup_screen.dart';
+import 'package:hm_imoveis_pim/screens/transaction/my_transaction_screen.dart';
 import 'package:hm_imoveis_pim/screens/transaction/transaction_details_screen.dart';
 import 'package:hm_imoveis_pim/utils/colors_app.dart';
 import 'package:provider/provider.dart';
@@ -80,6 +84,9 @@ class _MyAppState extends State<MyApp> {
           create: (_) => ContactUsManager(),
           lazy: false,
         ),
+        ChangeNotifierProvider(
+          create: (_) => InterestManager(),
+        ),
       ],
       child: StreamBuilder(
         initialData: _preferencesManager,
@@ -94,9 +101,6 @@ class _MyAppState extends State<MyApp> {
               scaffoldBackgroundColor: ColorsApp.primaryColor(),
               primaryColor: ColorsApp.primaryColor(),
               visualDensity: VisualDensity.adaptivePlatformDensity,
-              /*textTheme: GoogleFonts.montserratTextTheme(
-                Theme.of(context).textTheme,
-              ),*/
               fontFamily: 'Montserrat',
               textTheme: TextTheme(
                 bodyText2: TextStyle(
@@ -115,11 +119,9 @@ class _MyAppState extends State<MyApp> {
               visualDensity: VisualDensity.adaptivePlatformDensity,
               fontFamily: 'Montserrat',
               appBarTheme: const AppBarTheme(elevation: 0),
-              //cardColor: ColorsApp.primaryColorDark(),
-              cardTheme: CardTheme(
-                color: ColorsApp.primaryColorDark(),
-              ),
+              cardColor: ColorsApp.primaryColorDark(),
               canvasColor: ColorsApp.backgroundColorDark(),
+              dialogBackgroundColor: ColorsApp.primaryColorDark(),
             ),
             themeMode: _preferencesManager.darkTheme()
                 ? ThemeMode.dark
@@ -127,6 +129,14 @@ class _MyAppState extends State<MyApp> {
             initialRoute: '/base',
             onGenerateRoute: (settings) {
               switch (settings.name) {
+                case '/myAccount':
+                  return MaterialPageRoute(
+                    builder: (_) => MyAccountScreen(),
+                  );
+                case '/myTransaction':
+                  return MaterialPageRoute(
+                    builder: (_) => MyTransactionScreen(),
+                  );
                 case '/login':
                   return MaterialPageRoute(
                     builder: (_) => LoginScreen(),
@@ -152,7 +162,7 @@ class _MyAppState extends State<MyApp> {
                 case '/interestProperties':
                   return MaterialPageRoute(
                     builder: (_) => InterestProperties(
-                      settings.arguments as Properties,
+                      properties: settings.arguments as Properties,
                     ),
                   );
                 case '/launchDetails':
@@ -164,12 +174,16 @@ class _MyAppState extends State<MyApp> {
                 case '/interestLaunch':
                   return MaterialPageRoute(
                     builder: (_) => InterestLaunch(
-                      settings.arguments as Launch,
+                      launch: settings.arguments as Launch,
                     ),
                   );
                 case '/transactionDetails':
                   return MaterialPageRoute(
                     builder: (_) => TransactionDetailsScreen(),
+                  );
+                case '/confirmationMessageScreen':
+                  return MaterialPageRoute(
+                    builder: (_) => ConfirmationMessageScreen(),
                   );
                 case '/base':
                 default:
