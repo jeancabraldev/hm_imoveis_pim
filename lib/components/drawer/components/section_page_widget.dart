@@ -12,55 +12,62 @@ class SectionPageWidget extends StatelessWidget {
     return Column(
       children: [
         PageTileWidget(
-          text: 'Imóveis',
-          icon: FontAwesomeIcons.houseUser,
+          text: 'Home',
+          icon: FontAwesomeIcons.home,
           page: 0,
           highLighted: currentPage == 0,
         ),
         PageTileWidget(
-          text: 'Lançamentos',
-          icon: FontAwesomeIcons.solidBuilding,
+          text: 'Imóveis',
+          icon: FontAwesomeIcons.houseUser,
           page: 1,
           highLighted: currentPage == 1,
         ),
         PageTileWidget(
-          text: 'Bitcoins',
-          icon: FontAwesomeIcons.bitcoin,
+          text: 'Lançamentos',
+          icon: FontAwesomeIcons.solidBuilding,
           page: 2,
           highLighted: currentPage == 2,
         ),
         PageTileWidget(
-          text: 'Sobre Nós',
-          icon: FontAwesomeIcons.userTie,
+          text: 'Bitcoins',
+          icon: FontAwesomeIcons.bitcoin,
           page: 3,
           highLighted: currentPage == 3,
         ),
         PageTileWidget(
-          text: 'Fale Conosco',
-          icon: FontAwesomeIcons.headset,
+          text: 'Sobre Nós',
+          icon: FontAwesomeIcons.userTie,
           page: 4,
           highLighted: currentPage == 4,
         ),
         PageTileWidget(
-          text: 'Localização',
-          icon: FontAwesomeIcons.mapMarkerAlt,
+          text: 'Fale Conosco',
+          icon: FontAwesomeIcons.headset,
           page: 5,
           highLighted: currentPage == 5,
         ),
         PageTileWidget(
-          text: 'Informações',
-          icon: FontAwesomeIcons.info,
+          text: 'Localização',
+          icon: FontAwesomeIcons.mapMarkerAlt,
           page: 6,
           highLighted: currentPage == 6,
         ),
+        PageTileWidget(
+          text: 'Informações',
+          icon: FontAwesomeIcons.info,
+          page: 7,
+          highLighted: currentPage == 7,
+        ),
+        const Divider(),
         Consumer<UserManager>(
           builder: (_, userManager, __) {
             if (userManager.isLoggedIn) {
               return PageTileWidget(
                 text: 'Minha Conta',
                 icon: FontAwesomeIcons.userAlt,
-                page: 7,
-                highLighted: currentPage == 7,
+                page: 8,
+                highLighted: currentPage == 8,
               );
             }
             return Container();
@@ -69,8 +76,8 @@ class SectionPageWidget extends StatelessWidget {
         PageTileWidget(
           text: 'Configurações',
           icon: FontAwesomeIcons.cog,
-          page: 8,
-          highLighted: currentPage == 8,
+          page: 9,
+          highLighted: currentPage == 9,
         ),
       ],
     );

@@ -26,22 +26,25 @@ class InfoHeaderWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(
+/*                Text(
                   'Bem-vindo!',
                   style: TextStyle(
                     color: ColorsApp.secondaryColor(),
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
-                ),
+                ),*/
                 Text(
                   userManager.user?.name ?? 'Visitante',
                   overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
                   textAlign: TextAlign.right,
-                  style: const TextStyle(color: Colors.white),
+                  style: TextStyle(
+                    color: ColorsApp.secondaryColor(),
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
                 GestureDetector(
                   onTap: () {
                     if (userManager.isLoggedIn) {

@@ -5,7 +5,6 @@ import 'package:hm_imoveis_pim/components/forms/text_form_field_widget.dart';
 import 'package:hm_imoveis_pim/helpers/validator.dart';
 import 'package:hm_imoveis_pim/models/interest/interest.dart';
 import 'package:hm_imoveis_pim/models/interest/interest_manager.dart';
-import 'package:hm_imoveis_pim/models/preferences/preferences_manager.dart';
 import 'package:hm_imoveis_pim/models/properties/properties.dart';
 import 'package:hm_imoveis_pim/utils/colors_app.dart';
 import 'package:provider/provider.dart';
@@ -23,13 +22,12 @@ class InterestProperties extends StatelessWidget {
     final TextEditingController _controllerCode =
         TextEditingController(text: properties.code);
 
-    final darkTheme = Provider.of<PreferencesManager>(context);
-
     return Scaffold(
       appBar: AppBar(
         title: Text(properties.title),
         centerTitle: true,
       ),
+      key: _scaffoldKey,
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 30),
         child: Column(

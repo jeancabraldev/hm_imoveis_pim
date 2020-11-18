@@ -6,6 +6,7 @@ import 'package:hm_imoveis_pim/screens/account/account_screen.dart';
 import 'package:hm_imoveis_pim/screens/bitcoin/bitcoin_screen.dart';
 import 'package:hm_imoveis_pim/screens/company/local_company_screen.dart';
 import 'package:hm_imoveis_pim/screens/contact_us/contact_us_screen.dart';
+import 'package:hm_imoveis_pim/screens/home/home_screen.dart';
 import 'package:hm_imoveis_pim/screens/information/information_screen.dart';
 import 'package:hm_imoveis_pim/screens/launch/launch_screen.dart';
 import 'package:hm_imoveis_pim/screens/properties/properties_screen.dart';
@@ -37,6 +38,7 @@ class _BaseScreenState extends State<BaseScreen> {
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: [
+          HomeScreen(),
           PropertiesScreen(),
           LaunchScreen(),
           BitcoinScreen(),
