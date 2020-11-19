@@ -86,6 +86,56 @@ class LaunchDetails extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                          IconButton(
+                            icon: Icon(
+                              FontAwesomeIcons.questionCircle,
+                              size: 20,
+                              color: Colors.grey[500],
+                            ),
+                            onPressed: () {
+                              showDialog(
+                                  barrierDismissible: false,
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      content: SingleChildScrollView(
+                                        child: ListBody(
+                                          children: const [
+                                            Text(
+                                              'Bitcoins',
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            SizedBox(height: 10),
+                                            Text(
+                                              'Acesse a tela de Bitcoins para ver a cotação do dia, e ver o valor da entrada desse imóvel.',
+                                              textAlign: TextAlign.justify,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text(
+                                            'FECHAR',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              color: !darkTheme.darkTheme()
+                                                  ? ColorsApp.primaryColor()
+                                                  : Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            },
+                          ),
                         ],
                       ),
                     ],

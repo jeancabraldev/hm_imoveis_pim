@@ -89,6 +89,56 @@ class PropertiesDetails extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                          IconButton(
+                            icon: Icon(
+                              FontAwesomeIcons.questionCircle,
+                              size: 20,
+                              color: Colors.grey[500],
+                            ),
+                            onPressed: () {
+                              showDialog(
+                                  barrierDismissible: false,
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      content: SingleChildScrollView(
+                                        child: ListBody(
+                                          children: const [
+                                            Text(
+                                              'Bitcoins',
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            SizedBox(height: 10),
+                                            Text(
+                                              'Acesse a tela de Bitcoins para ver a cotação do dia, e ver o valor da entrada desse imóvel.',
+                                              textAlign: TextAlign.justify,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text(
+                                            'FECHAR',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              color: !darkTheme.darkTheme()
+                                                  ? ColorsApp.primaryColor()
+                                                  : Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            },
+                          ),
                         ],
                       ),
                     ],
@@ -143,7 +193,6 @@ class PropertiesDetails extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
                         onTap: () {
@@ -157,10 +206,22 @@ class PropertiesDetails extends StatelessWidget {
                                   ? ColorsApp.primaryColor()
                                   : ColorsApp.secondaryColor(),
                             ),
-                            const Text('Localização')
+                            const Text('Localização'),
                           ],
                         ),
-                      )
+                      ),
+                      const SizedBox(width: 20),
+                      Column(
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.solidBuilding,
+                            color: !darkTheme.darkTheme()
+                                ? ColorsApp.primaryColor()
+                                : ColorsApp.secondaryColor(),
+                          ),
+                          Text(properties.type),
+                        ],
+                      ),
                     ],
                   ),
                 ),

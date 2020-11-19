@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hm_imoveis_pim/components/drawer/drawer_widget.dart';
+import 'package:hm_imoveis_pim/models/user/user.dart';
 import 'package:hm_imoveis_pim/models/user/user_manager.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
+  final User user = User();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +15,7 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 30),
         child: Consumer<UserManager>(
           builder: (_, userManager, __) {
             return Column(
@@ -23,11 +25,13 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Text(
                   'Olá, ${userManager.user?.name?.split(' ')?.first ?? 'Visitante'}',
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 26,
+                    fontSize: 18,
                   ),
                 ),
+/*
                 Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -36,7 +40,8 @@ class HomeScreen extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                     child: Text('po'),
                   ),
-                )
+                ),
+*/
               ],
             );
           },
