@@ -35,7 +35,7 @@ class SettingScreen extends StatelessWidget {
               ),
             ),
             Container(
-              height: MediaQuery.of(context).size.height * 0.19,
+              height: MediaQuery.of(context).size.height * 0.35,
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -53,10 +53,11 @@ class SettingScreen extends StatelessWidget {
                         Row(
                           children: [
                             Container(
+                              padding: const EdgeInsets.symmetric(vertical: 30),
                               width: MediaQuery.of(context).size.width / 9,
                               child: preferencesManager.darkTheme()
-                                  ? Icon(Icons.brightness_4)
-                                  : Icon(Icons.brightness_high),
+                                  ? const Icon(Icons.brightness_4)
+                                  : const Icon(Icons.brightness_high),
                             ),
                             Container(
                               width: MediaQuery.of(context).size.width - 70,
@@ -70,6 +71,29 @@ class SettingScreen extends StatelessWidget {
                               ),
                             ),
                           ],
+                        ),
+                        const Divider(),
+                        GestureDetector(
+                          onTap: () => Navigator.of(context)
+                              .pushNamed('/versionApplication'),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width / 9,
+                                child: const Icon(
+                                  Icons.play_for_work,
+                                  size: 32,
+                                ),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width - 70,
+                                child: const ListTile(
+                                  title: Text('Versão'),
+                                  subtitle: Text('Informações do aplicativo'),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         const Divider(),
                       ],

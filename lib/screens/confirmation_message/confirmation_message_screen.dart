@@ -39,7 +39,7 @@ class ConfirmationMessageScreen extends StatelessWidget {
                   Consumer<UserManager>(
                     builder: (_, userManager, __) {
                       return Text(
-                        '${userManager.user?.name ?? 'Visitante '},',
+                        ' ${userManager.user?.name?.split(' ')?.first ?? ' '}',
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: 28,
@@ -51,8 +51,9 @@ class ConfirmationMessageScreen extends StatelessWidget {
                       );
                     },
                   ),
+                  const SizedBox(height: 20),
                   const Text(
-                    'recebemos a sua mensagem!',
+                    'Recebemos a sua mensagem!',
                     //textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 20,

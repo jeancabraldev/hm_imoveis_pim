@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hm_imoveis_pim/components/drawer/drawer_widget.dart';
 import 'package:hm_imoveis_pim/models/user/user.dart';
 import 'package:hm_imoveis_pim/models/user/user_manager.dart';
+import 'package:hm_imoveis_pim/screens/home/slide.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -24,24 +26,25 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Olá, ${userManager.user?.name?.split(' ')?.first ?? 'Visitante'}',
+                  'Olá, ${userManager.user?.name?.split(' ')?.first}',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
                   ),
                 ),
-/*
+                const SizedBox(height: 30),
                 Card(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(1),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                    child: Text('po'),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 12),
+                    height: 420,
+                    child: SlideScreen(),
                   ),
                 ),
-*/
               ],
             );
           },
