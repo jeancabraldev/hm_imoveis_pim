@@ -22,16 +22,16 @@ class SlideScreen extends StatelessWidget {
     final darkTheme = Provider.of<PreferencesManager>(context);
     return Container(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
             height: 200,
             width: MediaQuery.of(context).size.width,
             child: const Image(
-              image: AssetImage('assets/images/bitcoin_value.png'),
+              image: AssetImage('assets/images/bitcoin.png'),
+              fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 20),
           Text(
             'Bitcoins',
             textAlign: TextAlign.center,
@@ -43,11 +43,13 @@ class SlideScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
+          const SizedBox(height: 10),
           Text(
             info.text4,
             textAlign: TextAlign.center,
             style: const TextStyle(fontSize: 16),
           ),
+          const SizedBox(height: 20),
           Container(
             alignment: Alignment.bottomRight,
             child: const Icon(
@@ -65,15 +67,16 @@ class SlideScreen extends StatelessWidget {
     final darkTheme = Provider.of<PreferencesManager>(context);
     return Container(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
             height: 200,
+            width: MediaQuery.of(context).size.width,
             child: const Image(
               image: AssetImage('assets/images/law.png'),
+              fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 20),
           Text(
             'Lei LGPD',
             textAlign: TextAlign.center,
@@ -85,11 +88,13 @@ class SlideScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
+          const SizedBox(height: 10),
           Text(
             info.text3,
             textAlign: TextAlign.center,
             style: const TextStyle(fontSize: 16),
           ),
+          const SizedBox(height: 5),
           Container(
             alignment: Alignment.bottomRight,
             child: const Icon(
@@ -107,15 +112,16 @@ class SlideScreen extends StatelessWidget {
     final darkTheme = Provider.of<PreferencesManager>(context);
     return Container(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
             height: 200,
+            width: MediaQuery.of(context).size.width,
             child: const Image(
-              image: AssetImage('assets/images/law.png'),
+              image: AssetImage('assets/images/blockchain.png'),
+              fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 20),
           Text(
             'Blockchain',
             textAlign: TextAlign.center,
@@ -127,11 +133,13 @@ class SlideScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
+          const SizedBox(height: 10),
           Text(
             info.text2,
             textAlign: TextAlign.center,
             style: const TextStyle(fontSize: 16),
           ),
+          const SizedBox(height: 25),
           Container(
             alignment: Alignment.bottomRight,
             child: const Icon(

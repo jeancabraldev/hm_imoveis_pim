@@ -35,7 +35,8 @@ class InfoHeaderWidget extends StatelessWidget {
                   ),
                 ),*/
                 Text(
-                  userManager.user?.name ?? 'Visitante',
+                  'Olá, ${userManager.user?.name?.split(' ')?.first ?? ' '}',
+                  //userManager.user?.name ?? ' ',
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.right,
                   style: TextStyle(

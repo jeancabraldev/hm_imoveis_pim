@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Olá, ${userManager.user?.name?.split(' ')?.first}',
+                  'Olá, ${userManager.user?.name?.split(' ')?.first ?? ' '}',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Colors.white,
@@ -35,13 +35,14 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 Card(
+                  elevation: 5,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(1),
                   ),
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 12),
-                    height: 420,
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                    height: 430,
                     child: SlideScreen(),
                   ),
                 ),

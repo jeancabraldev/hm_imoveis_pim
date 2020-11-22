@@ -28,7 +28,7 @@ class AccountScreen extends StatelessWidget {
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: AssetImage('assets/images/information.png'),
+                  image: AssetImage('assets/images/account.png'),
                   fit: BoxFit.contain,
                 ),
               ),

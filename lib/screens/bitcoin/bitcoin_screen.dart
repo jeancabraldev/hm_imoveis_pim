@@ -31,7 +31,7 @@ class BitcoinScreen extends StatelessWidget {
                 color: ColorsApp.primaryColor(),
                 shape: BoxShape.circle,
                 image: const DecorationImage(
-                  image: AssetImage('assets/images/bitcoin_value.png'),
+                  image: AssetImage('assets/images/bitcoin.png'),
                   fit: BoxFit.contain,
                 ),
               ),
