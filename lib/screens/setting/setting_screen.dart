@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class SettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final preferencesManager = Provider.of<PreferencesManager>(context);
+    final darkTheme = Provider.of<PreferencesManager>(context);
     return Scaffold(
       drawer: DrawerWidget(),
       appBar: AppBar(
@@ -26,14 +26,16 @@ class SettingScreen extends StatelessWidget {
             Container(
               width: 160,
               height: 160,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: AssetImage('assets/images/information.png'),
+                color: Colors.grey[200],
+                image: const DecorationImage(
+                  image: AssetImage('assets/images/settings.png'),
                   fit: BoxFit.contain,
                 ),
               ),
             ),
+            const SizedBox(height: 15),
             Container(
               height: MediaQuery.of(context).size.height * 0.35,
               child: Card(
@@ -55,9 +57,10 @@ class SettingScreen extends StatelessWidget {
                             Container(
                               padding: const EdgeInsets.symmetric(vertical: 30),
                               width: MediaQuery.of(context).size.width / 9,
-                              child: preferencesManager.darkTheme()
+                              child: darkTheme.darkTheme()
                                   ? const Icon(Icons.brightness_4)
-                                  : const Icon(Icons.brightness_high),
+                                  : Icon(Icons.brightness_high,
+                                      color: Colors.grey[700]),
                             ),
                             Container(
                               width: MediaQuery.of(context).size.width - 70,
@@ -65,9 +68,9 @@ class SettingScreen extends StatelessWidget {
                                 title: const Text('Tema do Aplicativo'),
                                 subtitle: const Text(
                                     'Defina entre o tema escuro ou claro'),
-                                onChanged: (value) => preferencesManager
-                                    .useDarkTheme(value: value),
-                                value: preferencesManager.darkTheme(),
+                                onChanged: (value) =>
+                                    darkTheme.useDarkTheme(value: value),
+                                value: darkTheme.darkTheme(),
                               ),
                             ),
                           ],
@@ -80,9 +83,12 @@ class SettingScreen extends StatelessWidget {
                             children: [
                               Container(
                                 width: MediaQuery.of(context).size.width / 9,
-                                child: const Icon(
+                                child: Icon(
                                   Icons.play_for_work,
                                   size: 32,
+                                  color: !darkTheme.darkTheme()
+                                      ? Colors.grey[700]
+                                      : Colors.white,
                                 ),
                               ),
                               Container(

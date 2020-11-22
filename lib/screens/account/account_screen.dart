@@ -25,16 +25,18 @@ class AccountScreen extends StatelessWidget {
             Container(
               width: 160,
               height: 160,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                image: DecorationImage(
+                color: Colors.grey[200],
+                image: const DecorationImage(
                   image: AssetImage('assets/images/account.png'),
                   fit: BoxFit.contain,
                 ),
               ),
             ),
+            const SizedBox(height: 15),
             Container(
-              height: MediaQuery.of(context).size.height * 0.29,
+              height: MediaQuery.of(context).size.height * 0.33,
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -51,6 +53,7 @@ class AccountScreen extends StatelessWidget {
                       children: [
                         ListTileWidget(
                           title: 'Meus Dados',
+                          subTitle: '',
                           leading: FontAwesomeIcons.userAlt,
                           onTap: () =>
                               Navigator.of(context).pushNamed('/myAccount'),
@@ -58,6 +61,7 @@ class AccountScreen extends StatelessWidget {
                         const Divider(),
                         ListTileWidget(
                           title: 'Minhas Transações',
+                          subTitle: '',
                           leading: FontAwesomeIcons.handsHelping,
                           onTap: () =>
                               Navigator.of(context).pushNamed('/myTransaction'),

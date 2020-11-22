@@ -36,9 +36,10 @@ class ContactUsScreen extends StatelessWidget {
             Container(
               width: 160,
               height: 160,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                image: DecorationImage(
+                color: Colors.grey[200],
+                image: const DecorationImage(
                   image: AssetImage('assets/images/contact_us.png'),
                   fit: BoxFit.contain,
                 ),

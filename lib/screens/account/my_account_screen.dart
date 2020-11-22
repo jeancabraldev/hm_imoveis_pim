@@ -15,7 +15,7 @@ class MyAccountScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height * 0.29,
+          height: MediaQuery.of(context).size.height * 0.33,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
@@ -29,12 +29,14 @@ class MyAccountScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     ListTileWidget(
-                      title: user.user.name,
+                      title: 'Nome',
+                      subTitle: user.user.name,
                       leading: FontAwesomeIcons.userAlt,
                     ),
                     const Divider(),
                     ListTileWidget(
-                      title: user.user.email,
+                      title: 'E-mail',
+                      subTitle: user.user.email,
                       leading: FontAwesomeIcons.solidEnvelope,
                     ),
                     const Divider(),

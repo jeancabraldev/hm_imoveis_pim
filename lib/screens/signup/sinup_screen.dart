@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hm_imoveis_pim/components/buttons/raised/raised_button_widget.dart';
 import 'package:hm_imoveis_pim/components/forms/text_form_field_widget.dart';
 import 'package:hm_imoveis_pim/helpers/validator.dart';
-import 'package:hm_imoveis_pim/models/preferences/preferences_manager.dart';
 import 'package:hm_imoveis_pim/models/user/user.dart';
 import 'package:hm_imoveis_pim/models/user/user_manager.dart';
 import 'package:hm_imoveis_pim/utils/colors_app.dart';
@@ -16,7 +15,6 @@ class SignupScreen extends StatelessWidget {
   final User user = User();
   @override
   Widget build(BuildContext context) {
-    final darkTheme = Provider.of<PreferencesManager>(context);
     String msg = 'Campo obrigatório';
     return Scaffold(
       key: _scaffoldKey,
