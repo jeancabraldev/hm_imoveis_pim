@@ -80,7 +80,7 @@ class PropertiesScreen extends StatelessWidget {
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
           child: Consumer<PropertiesManager>(
             builder: (_, propertiesManager, __) {
               final filteredProperties = propertiesManager.filteredProperties;

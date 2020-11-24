@@ -80,7 +80,7 @@ class LaunchScreen extends StatelessWidget {
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
           child: Consumer<LaunchManager>(
             builder: (_, launchManager, __) {
               final filteredLaunch = launchManager.filteredLaunch;

@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hm_imoveis_pim/components/buttons/icon/icon_button_widget.dart';
 import 'package:hm_imoveis_pim/models/preferences/preferences_manager.dart';
 import 'package:hm_imoveis_pim/utils/colors_app.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +11,9 @@ class CardWidget extends StatelessWidget {
     this.city,
     this.hour1,
     this.hour2,
+    this.email,
+    this.phone1,
+    this.phone2,
   });
 
   final String pathImage;
@@ -20,6 +21,9 @@ class CardWidget extends StatelessWidget {
   final String city;
   final String hour1;
   final String hour2;
+  final String email;
+  final String phone1;
+  final String phone2;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +68,12 @@ class CardWidget extends StatelessWidget {
                 Text(city),
                 Text(hour1),
                 Text(hour2),
-                Row(
+                const SizedBox(height: 20),
+                Text(email),
+                Text(phone1),
+                Text(phone2),
+                const SizedBox(height: 10),
+                /*Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     IconButtonWidget(
@@ -87,7 +96,7 @@ class CardWidget extends StatelessWidget {
                       icon: FontAwesomeIcons.phoneAlt,
                     ),
                   ],
-                ),
+                ),*/
               ],
             ),
           ),

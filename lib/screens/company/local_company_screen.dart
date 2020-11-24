@@ -19,9 +19,12 @@ class LocalCompanyScreen extends StatelessWidget {
         child: CardWidget(
           pathImage: 'assets/images/store_local.jpg',
           address: 'Av Presidente Vargas, 2073',
-          city: 'Ribeirânia, Ribeirão Preto - SP',
+          city: 'Alto da Boa Vista, Ribeirão Preto - SP',
           hour1: 'Seg-Sex: 8h00 - 18h00',
           hour2: 'Sab: 8h00 - 15h00',
+          email: 'contato@mhimoveis.com.br',
+          phone1: '(16) 30216522',
+          phone2: '(16) 981431298',
         ),
       ),
     );
